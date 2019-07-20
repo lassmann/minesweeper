@@ -41,6 +41,7 @@ export class Server {
   }
 
   private criticalErrorHandler(...args) {
+    console.log(args)
     Logger.error('Critical Error...', ...args);
     process.exit(1);
   }
