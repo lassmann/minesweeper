@@ -12,6 +12,7 @@ export class CellEntity extends BaseEntity {
     x: { type: Sequelize.INTEGER },
     y: { type: Sequelize.INTEGER },
     content: { type: Sequelize.INTEGER },
+    isRevealed: { type: Sequelize.BOOLEAN },
     isFlagged: { type: Sequelize.BOOLEAN }
   };
   protected options: Sequelize.DefineOptions<any> = { name: { plural: 'cells' }, paranoid: false, timestamps: true };

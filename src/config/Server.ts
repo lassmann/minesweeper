@@ -1,7 +1,6 @@
 import * as express from 'express';
 import * as swaggerUi from 'swagger-ui-express';
 import * as bodyParser from 'body-parser';
-import * as morgan from 'morgan';
 
 import { Logger } from './Logger';
 import constants from './constants';
@@ -19,7 +18,6 @@ export class Server {
     this.app.use(this.allowCors);
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json());
-    // this.app.use(morgan('dev', { skip: () => {} }));
     RegisterRoutes(this.app);
     this.app.use(ErrorHandler.handleError);
 
@@ -41,7 +39,6 @@ export class Server {
   }
 
   private criticalErrorHandler(...args) {
-    console.log(args)
     Logger.error('Critical Error...', ...args);
     process.exit(1);
   }

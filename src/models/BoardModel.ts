@@ -1,6 +1,6 @@
 import { BaseFormatter } from './BaseFormatter';
 
-export enum Status {
+export enum BoardStatus {
   ONGOING = 'ongoing',
   WIN = 'win',
   LOOSE = 'loose'
@@ -10,8 +10,8 @@ export interface IBoardModel {
   mines: number;
   rows: number;
   columns: number;
-  status: Status;
-  boardGame: any;
+  status?: BoardStatus;
+  boardGame?: any;
   createdAt?: Date;
 }
 
@@ -19,7 +19,7 @@ export class BoardFormatter extends BaseFormatter implements IBoardModel {
   public mines: number = undefined;
   public rows: number = undefined;
   public columns: number = undefined;
-  public status: Status = undefined;
+  public status: BoardStatus = undefined;
   public boardGame: any = undefined;
 
   constructor(args: any) {

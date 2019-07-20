@@ -126,10 +126,9 @@ export const getDatesBetween = (start: moment.Moment, end: moment.Moment): momen
   end = end.clone();
   const days = [];
   while (!isSameDay(start, end)) {
-    days.push(end.clone()); /** THIS is the right order, first push and then substract */
+    days.push(end.clone());
     end.subtract(1, 'day');
   }
-  /** remove the first result cause it doesn't count. it's not a day in between, but the end day */
   return days.slice(1, days.length).reverse();
 };
 
