@@ -3,7 +3,6 @@ import { BaseService } from './BaseService';
 import { BoardRepository } from '../repositories';
 import { IBoardModel, IPlayModel } from '../models';
 
-
 @ProvideSingleton(BoardService)
 export class BoardService extends BaseService<IBoardModel> {
 

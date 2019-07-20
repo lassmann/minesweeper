@@ -12,7 +12,8 @@ export class BoardEntity extends BaseEntity {
     _id: { type: Sequelize.UUID, primaryKey: true, defaultValue: Sequelize.UUIDV4 },
     mines: { type: Sequelize.INTEGER, allowNull: false },
     rows: { type: Sequelize.INTEGER, allowNull: false},
-    columns: { type: Sequelize.INTEGER, allowNull: false }
+    columns: { type: Sequelize.INTEGER, allowNull: false },
+    boardGame: { type: Sequelize.JSON, allowNull: false }
   };
   protected options: Sequelize.DefineOptions<any> = { name: { plural: 'boards' }, paranoid: false, timestamps: true };
 

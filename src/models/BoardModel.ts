@@ -11,6 +11,7 @@ export interface IBoardModel {
   rows: number;
   columns: number;
   status: Status;
+  boardGame: any;
   createdAt?: Date;
 }
 
@@ -19,6 +20,7 @@ export class BoardFormatter extends BaseFormatter implements IBoardModel {
   public rows: number = undefined;
   public columns: number = undefined;
   public status: Status = undefined;
+  public boardGame: any = undefined;
 
   constructor(args: any) {
     super();
