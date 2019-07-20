@@ -1,0 +1,14 @@
+{
+  "swagger": {
+    "entryFile": "./build/routes.ts",
+    "outputDirectory": "./build/swagger",
+    "specMerging": "recursive"
+  },
+  "routes": {
+    "entryFile": "./src/controllers/index.ts",
+    "routesDir": "./build",
+    "basePath": "/service/",
+    "middleware": "express",
+    "iocModule": "./src/ioc"
+  }
+}

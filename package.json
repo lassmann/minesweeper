@@ -1,0 +1,87 @@
+{
+  "name": "minesweeper",
+  "version": "1.0.0",
+  "description": "minesweeper game api",
+  "main": "",
+  "pre-commit": [
+    "lint"
+  ],
+  "scripts": {
+    "lint": "tslint --config ./tslint.json --project ./tsconfig.json",
+    "build": "yarn build:tsoa && tsc && yarn copy",
+    "build:tsoa": "yarn clean && yarn build:routes && yarn build:swagger",
+    "build:routes": "tsoa routes",
+    "build:swagger": "tsoa swagger --basePath /service",
+    "start": "node ./dist/src/index.js",
+    "start:local": "yarn build:tsoa && cross-env NODE_ENV=local ts-node-dev --respawn ./src",
+    "clean": "rm -rf ./dist && rm -rf ./build && mkdir build",
+    "copy": "yarn copy:swagger && yarn copy:env",
+    "copy:swagger": "cp -R ./build/swagger ./dist/build/swagger",
+    "copy:env": "cp -R ./src/config/env ./dist/src/config/env"
+  },
+  "author": "Lucas Assmann <l.assmann.30@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.0.0",
+    "express": "^5.0.0-alpha.6",
+    "inversify": "^4.13.0",
+    "inversify-binding-decorators": "^3.2.0",
+    "inversify-inject-decorators": "^3.1.0",
+    "morgan": "^1.9.1",
+    "object-hash": "^1.3.0",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "reflect-metadata": "^0.1.12",
+    "sequelize": "^4.38.0",
+    "swagger-ui-express": "^4.0.1",
+    "tsoa": "^2.1.8",
+    "url": "^0.11.0",
+    "uuid": "^3.3.2",
+    "winston": "^3.0.0-rc6"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^4.0.3",
+    "@types/express": "^4.16.0",
+    "@types/morgan": "^1.7.35",
+    "@types/sequelize": "^4.27.24",
+    "@types/umzug": "^2.2.0",
+    "@types/uuid": "^3.4.3",
+    "chai": "^4.1.2",
+    "cross-env": "^5.2.0",
+    "pre-commit": "^1.2.2",
+    "randomstring": "^1.1.5",
+    "superagent-defaults": "^0.1.14",
+    "ts-node": "^6.0.5",
+    "ts-node-dev": "^1.0.0-pre.32",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.1",
+    "yarn": "^1.15.2"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.ts"
+    ],
+    "sourceMap": true,
+    "instrument": true,
+    "all": false,
+    "exclude": [
+      "src/ioc.ts",
+      "src/setup/**",
+      "src/config/SQLDbConnection.ts",
+      "src/models/*Model.ts",
+      "src/repositories/sql/entities/**"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text",
+      "text-summary",
+      "html"
+    ]
+  }
+}
