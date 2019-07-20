@@ -1,5 +1,5 @@
 import { BaseFormatter } from './BaseFormatter';
-
+import { ICellModel } from './cellModel';
 export enum BoardStatus {
   ONGOING = 'ongoing',
   WIN = 'win',
@@ -11,7 +11,7 @@ export interface IBoardModel {
   rows: number;
   columns: number;
   status?: BoardStatus;
-  boardGame?: any;
+  cellList?: ICellModel[];
   createdAt?: Date;
 }
 
@@ -20,7 +20,7 @@ export class BoardFormatter extends BaseFormatter implements IBoardModel {
   public rows: number = undefined;
   public columns: number = undefined;
   public status: BoardStatus = undefined;
-  public boardGame: any = undefined;
+  public cellList: any = undefined;
 
   constructor(args: any) {
     super();

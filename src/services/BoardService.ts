@@ -58,7 +58,6 @@ export class BoardService extends BaseService<IBoardModel> {
       }
     }
     await this.cellRepository.bulkWrite(cellList);
-    return minesweeper;
+    return this.getById(minesweeper._id);
   }
-  
 }

@@ -31,7 +31,7 @@ export class Server {
   public async listen(port: number = this.port) {
     process.on('uncaughtException', this.criticalErrorHandler);
     process.on('unhandledRejection', this.criticalErrorHandler);
-    await iocContainer.get<SQLSetupHelper>(SQLSetupHelper).sync({ force: false });
+    await iocContainer.get<SQLSetupHelper>(SQLSetupHelper).sync({ force: true });
     const listen = this.app.listen(this.port);
 
     Logger.info(`${constants.environment} server running on port: ${this.port}`);
