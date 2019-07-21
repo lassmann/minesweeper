@@ -43,11 +43,9 @@
   "devDependencies": {
     "@types/dotenv": "^4.0.3",
     "@types/express": "^4.16.0",
-    "@types/morgan": "^1.7.35",
     "@types/sequelize": "^4.27.24",
     "@types/umzug": "^2.2.0",
     "@types/uuid": "^3.4.3",
-    "chai": "^4.1.2",
     "cross-env": "^5.2.0",
     "pre-commit": "^1.2.2",
     "randomstring": "^1.1.5",
@@ -58,30 +56,7 @@
     "typescript": "^3.0.1",
     "yarn": "^1.15.2"
   },
-  "nyc": {
-    "include": [
-      "src/**/*.ts"
-    ],
-    "sourceMap": true,
-    "instrument": true,
-    "all": false,
-    "exclude": [
-      "src/ioc.ts",
-      "src/setup/**",
-      "src/config/SQLDbConnection.ts",
-      "src/models/*Model.ts",
-      "src/repositories/sql/entities/**"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ],
-    "reporter": [
-      "text",
-      "text-summary",
-      "html"
-    ]
+  "engines": {
+    "node": "11.13.x"
   }
 }
