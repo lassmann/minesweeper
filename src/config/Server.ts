@@ -8,6 +8,8 @@ import { ErrorHandler } from './ErrorHandler';
 import { RegisterRoutes } from '../../build/routes';
 import { iocContainer } from '../ioc';
 import { SQLSetupHelper } from './SQLSetupHelper';
+import * as https from 'https';
+
 import '../controllers';
 
 export class Server {
@@ -33,6 +35,7 @@ export class Server {
     process.on('unhandledRejection', this.criticalErrorHandler);
     await iocContainer.get<SQLSetupHelper>(SQLSetupHelper).sync({ force: false });
     const listen = this.app.listen(this.port);
+    setInterval(() => https.get('https://deviget-minesweeper-api.herokuapp.com/api-docs/'), 60000); // to set up heroku dyno permanently
 
     Logger.info(`${constants.environment} server running on port: ${this.port}`);
     return listen;
