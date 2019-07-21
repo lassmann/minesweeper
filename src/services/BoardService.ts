@@ -83,8 +83,10 @@ export class BoardService extends BaseService<IBoardModel> {
 
     const cell = await this.cellRepository.findOne({ boardId: model.boardId, x: model.x, y: model.y });
 
+    if (cell.isRevealed && model.instruction === Instruction.FLAG) throw new ApiError({ ...constants.errorTypes.validation, message: 'invalid operation' });
     if (model.instruction === Instruction.FLAG) {
-      await this.cellRepository.update(cell._id, { ...cell, isFlagged: true });
+      const isFlagged = cell.isFlagged ? false : true;
+      await this.cellRepository.update(cell._id, { ...cell, isFlagged });
       const mines = await this.cellRepository.find(null, null, null, JSON.stringify({ boardId: model.boardId, content: -1 }), []);
       if (mines.every(mine => mine.isFlagged)) await this.repository.update(board._id, { ...board, status: BoardStatus.WIN });
     }
