@@ -3,7 +3,8 @@
 ## Swagger
 * `<url>/api-docs`
 
-## URL: `https://deviget-minesweeper-api.herokuapp.com/api-docs/`
+## URL:
+* *  [swagger](https://deviget-minesweeper-api.herokuapp.com/api-docs/)
 
 ## Commands
 * **installation:** `yarn install`
