@@ -1,5 +1,3 @@
-import { Request } from 'express';
-import * as multer from 'multer';
 import * as hash from 'object-hash';
 import * as moment from 'moment';
 
@@ -60,15 +58,6 @@ export const cleanQuery = (
 
       return fullQuery;
     }, {});
-};
-
-export const parseMultiPartRequest = async (request: Request): Promise<void> => {
-  return new Promise<void>((resolve, reject) => {
-    multer().any()(request, undefined, async (error) => {
-      if (error) reject(error);
-      resolve();
-    });
-  });
 };
 
 export const isAcronym = (str: string): boolean => {
