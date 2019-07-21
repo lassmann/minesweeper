@@ -12,7 +12,7 @@
     "build:tsoa": "yarn clean && yarn build:routes && yarn build:swagger",
     "build:routes": "tsoa routes",
     "build:swagger": "tsoa swagger --basePath /service",
-    "start": "yarn build:tsoa && cross-env NODE_ENV=development && node ./dist/src/index.js",
+    "start": "yarn build && node ./dist/src/index.js",
     "start:local": "yarn build:tsoa && cross-env NODE_ENV=local ts-node-dev --respawn ./src",
     "clean": "rm -rf ./dist && rm -rf ./build && mkdir build",
     "copy": "yarn copy:swagger && yarn copy:env",
@@ -57,6 +57,6 @@
   },
   "engines": {
     "node": "11.13.x",
-    "yarn": "1.17.3"
+    "yarn": "1.15.2"
   }
 }
