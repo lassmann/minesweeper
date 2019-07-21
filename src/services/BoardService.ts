@@ -25,7 +25,7 @@ export class BoardService extends BaseService<IBoardModel> {
       .filter((_, index) => index < game.mines);
 
     let mineMatrix = [...Array(game.rows)].map(() => [...Array(game.columns)]);
-    const minesweeper = await this.create(game); // first create the
+    const board = await this.create(game); // first create the board
     const cellList: ICellModel[] = [];
     let matrixPos = 0;
     // here is created the mine matrix
@@ -48,7 +48,7 @@ export class BoardService extends BaseService<IBoardModel> {
           }
         }
         cellList.push({
-          boardId: minesweeper._id,
+          boardId: board._id,
           x,
           y,
           isFlagged: false,
@@ -58,17 +58,19 @@ export class BoardService extends BaseService<IBoardModel> {
       }
     }
     await this.cellRepository.bulkWrite(cellList);
-    return this.getById(minesweeper._id);
+    return this.getById(board._id);
   }
 
-  public async revealCleanNeighbors(board: IBoardModel, cell: ICellModel) {
+  public async updateNeighbour(x, y, board) {
+    const neighbour = await this.cellRepository.findOne({ boardId: board._id, x, y });
+    await this.cellRepository.update(neighbour._id, { ...neighbour, isRevealed: true });
+    if (neighbour.content) this.revealCleanNeighbors(board, neighbour);
+  }
+
+  public revealCleanNeighbors(board: IBoardModel, cell: ICellModel) {
     for (let i = cell.x - 1; i < cell.x + 2; i++) {
       for (let j = cell.y - 1; j < cell.y + 2; j++) {
-        if (i > -1 && j > -1 && i < board.rows && j < board.rows && i !== cell.x && j !== cell.y) {
-          const neighbour = await this.cellRepository.findOne({ boardId: board._id, x: i, y: j });
-          await this.cellRepository.update(neighbour._id, { ...neighbour, isRevealed: true });
-          if (!neighbour.content) this.revealCleanNeighbors(board, neighbour);
-        }
+        if (i > -1 && j > -1 && i < board.rows && j < board.columns && i !== cell.x && j !== cell.y) this.updateNeighbour(i, j, board);
       }
     }
   }
@@ -83,12 +85,12 @@ export class BoardService extends BaseService<IBoardModel> {
 
     if (model.instruction === Instruction.FLAG) {
       await this.cellRepository.update(cell._id, { ...cell, isFlagged: true });
-      const mines = await this.cellRepository.find(null, null, null, JSON.stringify({ boardId: model.boardId, content: -1 }), null);
+      const mines = await this.cellRepository.find(null, null, null, JSON.stringify({ boardId: model.boardId, content: -1 }), []);
       if (mines.every(mine => mine.isFlagged)) await this.repository.update(board._id, { ...board, status: BoardStatus.WIN });
     }
     if (model.instruction === Instruction.REVEAL) {
       if (cell.content === -1) await this.repository.update(board._id, { ...board, status: BoardStatus.LOSE });
-      if (cell.content === 0) await this.revealCleanNeighbors(board, cell); // recursive update to this al all near Neighbors;
+      if (cell.content === 0) await this.revealCleanNeighbors(board, cell); // recursive update to this al all near neighbors;
       await this.cellRepository.update(cell._id, { ...cell, isRevealed: true });
     }
     return this.getById(model.boardId);
