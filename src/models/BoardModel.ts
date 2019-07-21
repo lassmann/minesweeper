@@ -1,5 +1,5 @@
 import { BaseFormatter } from './BaseFormatter';
-import { ICellModel } from './cellModel';
+import { ICellModel } from './CellModel';
 export enum BoardStatus {
   ONGOING = 'ongoing',
   WIN = 'win',
