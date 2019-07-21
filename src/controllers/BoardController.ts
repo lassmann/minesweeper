@@ -13,18 +13,18 @@ export class BoardController extends Controller {
         super();
     }
 
-    @Get('{id}')
-    public async getById(id: string, @Request() request: expressRequest): Promise<IBoardModel> {
-        return this.service.getById(id);
-    }
-
-    @Post('/create')
+    @Post('/')
     public async create(@Body() model: IBoardModel, ): Promise<IBoardModel> {
         return this.service.createGame(model);
     }
 
-    // @Post('/play')
-    // public async play(@Body() model: IPlayModel, ): Promise<IBoardModel> {
-    //     return this.service.play(model);
-    // }
+    @Post('/play')
+    public async play(@Body() model: IPlayModel, ): Promise<IBoardModel> {
+        return this.service.play(model);
+    }
+
+    @Get('{id}')
+    public async getById(id: string, @Request() request: expressRequest): Promise<IBoardModel> {
+        return this.service.getById(id);
+    }
 }

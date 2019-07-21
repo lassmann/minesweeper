@@ -3,7 +3,7 @@ import { ICellModel } from './cellModel';
 export enum BoardStatus {
   ONGOING = 'ongoing',
   WIN = 'win',
-  LOOSE = 'loose'
+  LOSE = 'game over'
 }
 export interface IBoardModel {
   _id?: string;
