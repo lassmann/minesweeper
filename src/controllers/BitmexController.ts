@@ -15,4 +15,9 @@ export class BitmexController extends Controller {
     public async bitmexCandles(): Promise<void> {
         return this.service.getBitmexCandles();
     }
+
+    @Get('scalpingJedi')
+    public async getScalpingJediPools(): Promise<void> {
+        return this.service.getScalpingJediPools();
+    }
 }

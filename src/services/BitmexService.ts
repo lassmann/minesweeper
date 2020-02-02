@@ -13,4 +13,9 @@ export class BitmexService extends BaseService<any> {
     const res = await this.get(`https://www.bitmex.com/api/v1/trade/bucketed?binSize=1m&symbol=XBTUSD&count=1000&reverse=true`);
     return JSON.parse(res);
   }
+
+  public async getScalpingJediPools() {
+    const res = await this.get(`https://scalpingjedi.com/JSONS/poolsdata_step_5.json?nocache=${Date.now()}`);
+    return JSON.parse(res);
+  }
 }
