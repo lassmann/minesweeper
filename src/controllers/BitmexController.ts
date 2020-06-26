@@ -1,4 +1,4 @@
-import { Route, Controller, Get, Tags } from 'tsoa';
+import { Route, Controller, Get, Tags, Query } from 'tsoa';
 
 import { ProvideSingleton, inject } from '../ioc';
 import { BitmexService } from '../services';
@@ -16,8 +16,16 @@ export class BitmexController extends Controller {
         return this.service.getBitmexCandles();
     }
 
-    @Get('scalpingJedi')
+    @Get('pools')
     public async getScalpingJediPools(): Promise<void> {
         return this.service.getScalpingJediPools();
+    }
+
+    @Get('dataPools')
+    public async getDataPools(
+        @Query('from') from: string,
+        @Query('to') to: string,
+    ): Promise<void> {
+        return this.service.getPoolsData(from, to);
     }
 }

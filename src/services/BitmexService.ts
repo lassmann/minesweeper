@@ -1,7 +1,7 @@
 import { ProvideSingleton } from '../ioc';
 import { BaseService } from './BaseService';
 import { get } from 'request-promise';
-
+import fetch from 'node-fetch';
 @ProvideSingleton(BitmexService)
 export class BitmexService extends BaseService<any> {
   public get = get;
@@ -17,5 +17,12 @@ export class BitmexService extends BaseService<any> {
   public async getScalpingJediPools() {
     const res = await this.get(`https://scalpingjedi.com/JSONS/poolsdata_step_5.json?nocache=${Date.now()}`);
     return JSON.parse(res);
+  }
+
+  // remember from and to is in format Date.now()/1000
+  public async getPoolsData(from: string, to: string) {
+    return fetch(`https://scalpingjedi.com/JSONS/historysteps/pools_${from}_${to}.json`)
+      .then(data => data.json())
+      .then(data2 => data2);
   }
 }

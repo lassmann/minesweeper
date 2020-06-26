@@ -23,11 +23,11 @@ export class Server {
     RegisterRoutes(this.app);
     this.app.use(ErrorHandler.handleError);
 
-    if (!constants.isProd && !constants.isStage) {
-      const swaggerDocument = require('../../build/swagger/swagger.json');
-      const swaggerOptions = { explorer: false };
-      this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
-    }
+    // if (!constants.isProd && !constants.isStage) {
+    //   const swaggerDocument = require('../../build/swagger/swagger.json');
+    //   const swaggerOptions = { explorer: false };
+    //   this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
+    // }
   }
 
   public async listen(port: number = this.port) {
@@ -43,7 +43,6 @@ export class Server {
 
   private criticalErrorHandler(...args) {
     Logger.error('Critical Error...', ...args);
-    process.exit(1);
   }
 
   private allowCors(req: express.Request, res: express.Response, next: express.NextFunction): void {
