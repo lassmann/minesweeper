@@ -12,8 +12,12 @@ export class BitmexController extends Controller {
     }
 
     @Get('')
-    public async bitmexCandles(): Promise<void> {
-        return this.service.getBitmexCandles();
+    public async bitmexCandles(
+        @Query('binSize') binSize: string,
+        @Query('startTime') startTime?: string,
+        @Query('endTime') endTime?: string
+    ): Promise<void> {
+        return this.service.getBitmexCandles(binSize, startTime, endTime);
     }
 
     @Get('pools')

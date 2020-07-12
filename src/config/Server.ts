@@ -22,7 +22,9 @@ export class Server {
     this.app.use(bodyParser.json());
     RegisterRoutes(this.app);
     this.app.use(ErrorHandler.handleError);
-
+    const swaggerDocument = require('../../build/swagger/swagger.json');
+    const swaggerOptions = { explorer: false };
+    this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
     // if (!constants.isProd && !constants.isStage) {
     //   const swaggerDocument = require('../../build/swagger/swagger.json');
     //   const swaggerOptions = { explorer: false };
