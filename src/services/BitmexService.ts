@@ -31,6 +31,11 @@ export class BitmexService extends BaseService<any> {
     return parsedRes[0].close;
   }
 
+  public async getFalconStatus() {
+    const res = await this.get('https://scalpingjedi.com/JSONS/hf_status_falcon.json?1593607458670');
+    return JSON.parse(res);
+  }
+
   // remember from and to is in format Date.now()/1000
   public async getPoolsData(from: string, to: string) {
     return fetch(`https://scalpingjedi.com/JSONS/historysteps/pools_${from}_${to}.json`)

@@ -30,6 +30,11 @@ export class BitmexController extends Controller {
         return this.service.getBitcoinPrice();
     }
 
+    @Get('falconStatus')
+    public async getFalconStatus(): Promise<void> {
+        return this.service.getFalconStatus();
+    }
+
     @Get('dataPools')
     public async getDataPools(
         @Query('from') from: string,
