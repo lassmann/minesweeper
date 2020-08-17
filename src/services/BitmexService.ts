@@ -25,6 +25,12 @@ export class BitmexService extends BaseService<any> {
     return JSON.parse(res);
   }
 
+  public async getBitcoinPrice() {
+    const res = await this.get('https://www.bitmex.com/api/v1/trade/bucketed?binSize=1m&partial=true&count=1&reverse=true&symbol=XBTUSD');
+    const parsedRes = JSON.parse(res);
+    return parsedRes[0].close;
+  }
+
   // remember from and to is in format Date.now()/1000
   public async getPoolsData(from: string, to: string) {
     return fetch(`https://scalpingjedi.com/JSONS/historysteps/pools_${from}_${to}.json`)

@@ -25,6 +25,11 @@ export class BitmexController extends Controller {
         return this.service.getScalpingJediPools();
     }
 
+    @Get('bitcoinPrice')
+    public async getBitcoinPrice(): Promise<void> {
+        return this.service.getBitcoinPrice();
+    }
+
     @Get('dataPools')
     public async getDataPools(
         @Query('from') from: string,
