@@ -13,7 +13,7 @@ export class BitmexService extends BaseService<any> {
   // binSize Available options: [1m,5m,1h,1d].
   public async  getBitmexCandles(binSize, startTime?, endTime?) {
     // let url = `https://www.bitmex.com/api/v1/trade/bucketed?binSize=${binSize}&partial=true&symbol=XBTUSD&count=1000&reverse=true`;
-    let url = `https://www.bitmex.com/api/v1/trade/bucketed?binSize=${binSize}&symbol=XBTUSD&count=1000&reverse=true`;
+    let url = `https://www.bitmex.com/api/v1/trade/bucketed?binSize=${binSize}&symbol=XBTUSD&count=1000&reverse=false`;
     if (startTime) url = `${url}&startTime=${startTime}`;
     if (endTime) url = `${url}&endTime=${endTime}`;
     const res = await this.get(url);
