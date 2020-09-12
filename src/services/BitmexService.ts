@@ -11,9 +11,10 @@ export class BitmexService extends BaseService<any> {
 
   // startTime and endtime should be like `2020-07-09T14:56`
   // binSize Available options: [1m,5m,1h,1d].
-  public async  getBitmexCandles(binSize, startTime?, endTime?) {
+  public async  getBitmexCandles(binSize, startTime?, endTime?, reverse: boolean = true) {
     // let url = `https://www.bitmex.com/api/v1/trade/bucketed?binSize=${binSize}&partial=true&symbol=XBTUSD&count=1000&reverse=true`;
-    let url = `https://www.bitmex.com/api/v1/trade/bucketed?binSize=${binSize}&symbol=XBTUSD&count=1000&reverse=true`;
+    let url = `https://www.bitmex.com/api/v1/trade/bucketed?binSize=${binSize}&symbol=XBTUSD&count=1000`;
+    if (reverse) url = `${url}&reverse=${reverse}`;
     if (startTime) url = `${url}&startTime=${startTime}`;
     if (endTime) url = `${url}&endTime=${endTime}`;
     const res = await this.get(url);
