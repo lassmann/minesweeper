@@ -43,4 +43,14 @@ export class BitmexService extends BaseService<any> {
       .then(data => data.json())
       .then(data2 => data2);
   }
+
+  public async getChartPresionData() {
+    const res = await this.get('https://scalpingjedi.com/JSONS/chart_presion_data.json');
+    return JSON.parse(res);
+  }
+
+  public async  getHFStatusFalcon() {
+    const res = await this.get('https://scalpingjedi.com/JSONS/hf_status_falcon.json');
+    return JSON.parse(res);
+  }
 }

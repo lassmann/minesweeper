@@ -43,4 +43,16 @@ export class BitmexController extends Controller {
     ): Promise<void> {
         return this.service.getPoolsData(from, to);
     }
+
+    // https://scalpingjedi.com/JSONS/chart_presion_data.json
+    @Get('chart_presion_data')
+    public async getChartPresionData(): Promise<void> {
+        return this.service.getChartPresionData();
+    }
+
+    // https://scalpingjedi.com/JSONS/hf_status_falcon.json
+    @Get('hf_status_falcon')
+    public async getHFStatusFalcon(): Promise<void> {
+        return this.service.getHFStatusFalcon();
+    }
 }
