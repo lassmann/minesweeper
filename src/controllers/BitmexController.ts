@@ -70,4 +70,10 @@ export class BitmexController extends Controller {
     ): Promise<void> {
         return this.service.getFalcon(startdate, t);
     }
+
+    // https://scalpingjedi.com/JSONS/chartpresion_nextstep.json
+    @Get('chartpresionNextstep')
+    public async chartpresionNextstep(): Promise<void> {
+        return this.service.chartpresionNextstep();
+    }
 }
