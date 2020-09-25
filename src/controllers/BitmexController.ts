@@ -76,4 +76,22 @@ export class BitmexController extends Controller {
     public async chartpresionNextstep(): Promise<void> {
         return this.service.chartpresionNextstep();
     }
+
+    // https://scalpingjedi.com/JSONS/lastkill.json
+    @Get('lastKill')
+    public async getLastkill(): Promise<void> {
+        return this.service.getLastkill();
+    }
+
+    // https://scalpingjedi.com/JSONS/historial_liquidacion.json
+    @Get('lastKill')
+    public async getHistorialLiquidacion(): Promise<void> {
+        return this.service.getHistorialLiquidacion();
+    }
+
+    // https://scalpingjedi.com/JSONS/bigorders_data_0.json
+    @Get('lastKill')
+    public async getHistgetBigOrdersorialLiquidacion(): Promise<void> {
+        return this.service.getBigOrders();
+    }
 }
