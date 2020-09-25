@@ -94,4 +94,10 @@ export class BitmexService extends BaseService<any> {
     const res = await this.get(`https://scalpingjedi.com/JSONS/power_nextstep.json`);
     return JSON.parse(res);
   }
+
+  // https://scalpingjedi.com/JSONS/power_data_0.json
+  public async  getPowerData() {
+    const res = await this.get(`https://scalpingjedi.com/JSONS/power_data_0.json`);
+    return JSON.parse(res);
+  }
 }
