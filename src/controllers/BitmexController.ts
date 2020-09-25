@@ -84,13 +84,13 @@ export class BitmexController extends Controller {
     }
 
     // https://scalpingjedi.com/JSONS/historial_liquidacion.json
-    @Get('lastKill')
+    @Get('historialLiquidaciones')
     public async getHistorialLiquidacion(): Promise<void> {
         return this.service.getHistorialLiquidacion();
     }
 
     // https://scalpingjedi.com/JSONS/bigorders_data_0.json
-    @Get('lastKill')
+    @Get('bigorders')
     public async getHistgetBigOrdersorialLiquidacion(): Promise<void> {
         return this.service.getBigOrders();
     }
