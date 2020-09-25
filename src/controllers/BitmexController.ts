@@ -102,7 +102,7 @@ export class BitmexController extends Controller {
     }
 
     // https://scalpingjedi.com/JSONS/power_data_0.json
-    @Get('power_nextstep')
+    @Get('power_data')
     public async getPowerData(): Promise<void> {
         return this.service.getPowerData();
     }
