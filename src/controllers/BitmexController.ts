@@ -55,4 +55,19 @@ export class BitmexController extends Controller {
     public async getHFStatusFalcon(): Promise<void> {
         return this.service.getHFStatusFalcon();
     }
+
+    // https://scalpingjedi.com/JSONS/hf_force_historic.json
+    @Get('hf_force_historic')
+    public async getHFForceHistoric(): Promise<void> {
+        return this.service.getHFForceHistoric();
+    }
+
+    // https://scalpingjedi.com/getFalcon.php?startdate=1599609600-1599696000&t=1600991584234
+    @Get('getFalcon')
+    public async getFalcon(
+        @Query('startdate') startdate: string,
+        @Query('t') t: string,
+    ): Promise<void> {
+        return this.service.getFalcon(startdate, t);
+    }
 }

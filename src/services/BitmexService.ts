@@ -53,4 +53,15 @@ export class BitmexService extends BaseService<any> {
     const res = await this.get('https://scalpingjedi.com/JSONS/hf_status_falcon.json');
     return JSON.parse(res);
   }
+
+  public async  getHFForceHistoric() {
+    const res = await this.get('https://scalpingjedi.com/JSONS/hf_force_historic.json');
+    return JSON.parse(res);
+  }
+
+  // https://scalpingjedi.com/getFalcon.php?startdate=1599609600-1599696000&t=1600991584234
+  public async  getFalcon(startdate, t) {
+    const res = await this.get(`https://scalpingjedi.com/getFalcon.php?startdate=${startdate}&t=${t}`);
+    return JSON.parse(res);
+  }
 }
