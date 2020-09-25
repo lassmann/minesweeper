@@ -94,4 +94,10 @@ export class BitmexController extends Controller {
     public async getHistgetBigOrdersorialLiquidacion(): Promise<void> {
         return this.service.getBigOrders();
     }
+
+    // https://scalpingjedi.com/JSONS/power_nextstep.json
+    @Get('power_nextstep')
+    public async getPowerNextstep(): Promise<void> {
+        return this.service.getPowerNextstep();
+    }
 }

@@ -82,9 +82,16 @@ export class BitmexService extends BaseService<any> {
     const res = await this.get(`https://scalpingjedi.com/JSONS/historial_liquidacion.json`);
     return JSON.parse(res);
   }
+
   // https://scalpingjedi.com/JSONS/bigorders_data_0.json
   public async  getBigOrders() {
     const res = await this.get(`https://scalpingjedi.com/JSONS/bigorders_data_0.json`);
+    return JSON.parse(res);
+  }
+
+  // https://scalpingjedi.com/JSONS/power_nextstep.json
+  public async  getPowerNextstep() {
+    const res = await this.get(`https://scalpingjedi.com/JSONS/power_nextstep.json`);
     return JSON.parse(res);
   }
 }
