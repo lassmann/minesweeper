@@ -106,4 +106,10 @@ export class BitmexController extends Controller {
     public async getPowerData(): Promise<void> {
         return this.service.getPowerData();
     }
+
+    // https://scalpingjedi.com/JSONS/open_interest_5m.json
+    @Get('open_interest')
+    public async getOpenIterest(): Promise<void> {
+        return this.service.getOpenInterest();
+    }
 }
